@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+
+                <h3>Nombre d'article : {{ countarticle }}</h3>
+
+                {% for art in showarticle %}
+
+                    <div class="article">
+                        <h3>{{ art.title }}</h3>
+
+                        <ul class="list-unstyled list-inline">
+                            <li><i class="fa fa-calendar"></i> {{ art.creationdate|date("d/m/Y") }}</li>
+                        </ul>
+
+                        <div class="article-content">
+                            {{ art.content }}
+                        </div>
+
+                    </div>
+
+                {% else %}
+                    No articles have been found.
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

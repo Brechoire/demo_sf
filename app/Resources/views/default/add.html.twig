@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h1>Ajout d'un article</h1>
+                <form action="#" method="post">
+
+
+                    {{ form_start(form) }}
+
+                    <div class="form-group">
+                        {{ form_label(form.title, 'Votre titre') }} : {{ form_widget(form.title) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.content, 'Votre article') }} : {{ form_widget(form.content) }}
+                    </div>
+
+                    {{ form_widget(form.save, { 'label': 'Envoyer' }) }}
+
+                    {{ form_end(form) }}
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}
