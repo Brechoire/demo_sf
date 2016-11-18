@@ -14,5 +14,5 @@ services:
                 - { name: twig.extension }
 
     app.article:
-                class: Blog\ArticleBundle\BlogArticleBundle
+                class: Blog\ArticleBundle\Service\Article
                 arguments: ["@doctrine.orm.entity_manager", "@form.factory"]

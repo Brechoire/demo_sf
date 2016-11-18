@@ -29,14 +29,24 @@ class Article
      * @param $doctrine
      * @param $form
      */
-    public function __construct($doctrine, $form)
+    public function __construct(EntityManager $doctrine, FormFactory $form)
     {
         $this->doctrine = $doctrine;
-        $this->$form = $form;
+        $this->form = $form;
     }
 
     public function showArticle()
     {
-        
+//        $articles = $this->doctrine->getRepository('AppBundle:Article')->findAll();
+
+         $showArticle = $this->doctrine->getRepository('BlogArticleBundle:Article')->showArticles();
+
+//        $repository = $this->getDoctrine()
+//            ->getManager()
+//            ->getRepository('Blog');
+//
+//        $showArticle = $repository->showArticles();
+
+        return $showArticle;
     }
 }

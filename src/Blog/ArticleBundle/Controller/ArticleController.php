@@ -24,15 +24,17 @@ class ArticleController extends Controller
     public function indexAction()
     {
 
-        $repository = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('BlogArticleBundle:Article');
+//        $repository = $this->getDoctrine()
+//            ->getManager()
+//            ->getRepository('BlogArticleBundle:Article');
+//
+//        $count = $repository->countArticle();
+//        $showArticle = $repository->showArticles();
 
-        $count = $repository->countArticle();
-        $showArticle = $repository->showArticles();
+        $showArticle = $this->get('app.article')->showArticle();
 
         return array(
-            'countarticle' => $count,
+//            'countarticle' => $count,
             'showarticle' => $showArticle
         );
 
