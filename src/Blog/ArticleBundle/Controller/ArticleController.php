@@ -37,7 +37,7 @@ class ArticleController extends Controller
         );
 
     }
-
+    
     /**
      * @Route("/add", name="add")
      * @Template("default/add.html.twig")
