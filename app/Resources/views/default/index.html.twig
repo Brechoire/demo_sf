@@ -6,7 +6,9 @@
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
+
                 <h4>Nombre d'article : {{ countarticle }}</h4>
+
                 {% for art in showarticle %}
 
                     <div class="article">
@@ -32,7 +34,9 @@
                     </div>
 
                 {% else %}
-                    No articles have been found.
+                    <div class="alert alert-warning" role="alert">
+                        Il n'y a aucun article. <a href="{{ path('add') }}">Ajouter un article</a>
+                    </div>
                 {% endfor %}
 
             </div>

@@ -12,3 +12,7 @@ services:
             class: Twig_Extensions_Extension_Text
             tags:
                 - { name: twig.extension }
+
+    app.article:
+                class: Blog\ArticleBundle\BlogArticleBundle
+                arguments: ["@doctrine.orm.entity_manager", "@form.factory"]
