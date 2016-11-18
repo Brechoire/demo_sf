@@ -17,8 +17,15 @@
                         </ul>
 
                         <div class="article-content">
+                            {% if art.content|length > 600 %}
 
-                            {{ art.content|truncate(600) }} <a href="#">Voir plus</a>
+                                {{ art.content|truncate(600) }} <a href="#">Voir plus</a>
+
+                            {% else %}
+
+                                {{ art.content }}
+
+                            {% endif %}
 
                         </div>
 
