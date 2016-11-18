@@ -6,28 +6,28 @@
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-<h4>Nombre d'article : {{ countarticle }}</h4>
+                <h4>Nombre d'article : {{ countarticle }}</h4>
                 {% for art in showarticle %}
 
                     <div class="article">
-                        <a href="#"><h3>{{ art.title }}</h3></a>
+                        <a href="{{ path('article', {'id': art.id}) }}"><h3>{{ art.title }}</h3></a>
 
-                        <ul class="list-unstyled list-inline">
-                            <li><i class="fa fa-calendar"></i> {{ art.creationdate|date("d/m/Y") }}</li>
-                        </ul>
+                            <ul class="list-unstyled list-inline">
+                                <li><i class="fa fa-calendar"></i> {{ art.creationdate|date("d/m/Y") }}</li>
+                            </ul>
 
-                        <div class="article-content">
-                            {% if art.content|length > 600 %}
+                            <div class="article-content">
+                                {% if art.content|length > 600 %}
 
-                                {{ art.content|truncate(600) }} <a href="#">Voir plus</a>
+                                    {{ art.content|truncate(600) }} <a href="#">Voir plus</a>
 
-                            {% else %}
+                                {% else %}
 
-                                {{ art.content }}
+                                    {{ art.content }}
 
-                            {% endif %}
+                                {% endif %}
 
-                        </div>
+                            </div>
 
                     </div>
 

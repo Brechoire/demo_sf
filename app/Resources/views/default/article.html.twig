@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+
+                    <div class="article">
+                        <a href="#"><h3>{{ article.title }}</h3></a>
+
+                        <ul class="list-unstyled list-inline">
+                            <li><i class="fa fa-calendar"></i> {{ article.creationdate|date("d/m/Y") }}</li>
+                        </ul>
+
+                        <div class="article-content">
+
+                                {{ article.content }}
+
+                        </div>
+
+                    </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

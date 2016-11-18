@@ -37,7 +37,21 @@ class ArticleController extends Controller
         );
 
     }
-    
+
+    /**
+     * @Route("article/{id}", name="article", requirements={"page": "\d+"})
+     * @Template("default/article.html.twig")
+     */
+    public function showArticleAction($id)
+    {
+        $article = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('BlogArticleBundle:Article')
+            ->find($id);
+
+        return array('article' => $article);
+    }
+
     /**
      * @Route("/add", name="add")
      * @Template("default/add.html.twig")
@@ -62,4 +76,6 @@ class ArticleController extends Controller
 
         return array('form' => $form->createView());
     }
+
+
 }
