@@ -61,21 +61,21 @@ class ArticleController extends Controller
     public function addArticleAction(Request $request)
     {
 
-        $form = $this->createForm(ArticleType::class, new Article());
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+//        $form = $this->createForm(ArticleType::class, new Article());
+  //      $form->handleRequest($request);
+//
+  //      if ($form->isSubmitted() && $form->isValid()) {
 
 //            dump($form->getData());
 //            die;
 
-            $article = $form->getData();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($article);
-            $em->flush();
-            return $this->redirectToRoute('home-page');
-        }
-
+//            $article = $form->getData();
+  //          $em = $this->getDoctrine()->getManager();
+    //        $em->persist($article);
+      //      $em->flush();
+        //    return $this->redirectToRoute('home-page');
+        //}
+        $form = $this->get('app.article')->addArticle($request);
         return array('form' => $form->createView());
     }
 

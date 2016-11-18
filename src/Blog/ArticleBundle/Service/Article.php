@@ -9,8 +9,11 @@
 namespace Blog\ArticleBundle\Service;
 
 
+use Blog\ArticleBundle\Form\ArticleType;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\FormFactory;
+use Symfony\Component\HttpFoundation\Request;
+
 
 class Article
 {
@@ -37,16 +40,26 @@ class Article
 
     public function showArticle()
     {
-//        $articles = $this->doctrine->getRepository('AppBundle:Article')->findAll();
-
          $showArticle = $this->doctrine->getRepository('BlogArticleBundle:Article')->showArticles();
 
-//        $repository = $this->getDoctrine()
-//            ->getManager()
-//            ->getRepository('Blog');
-//
-//        $showArticle = $repository->showArticles();
-
         return $showArticle;
+    }
+
+    public function addArticle(Request $request)
+    {
+        $article = new \Blog\ArticleBundle\Entity\Article();
+
+        $form = $this->form->create(ArticleType::class, $article);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid() && $form->isSubmitted()) {
+            $this->doctrine->persist($article);
+            $this->doctrine->flush();
+            // $this->session->getFlashbag()->add('success', 'L'article a bien été ajouté');
+           
+        }
+
+        return $form;
     }
 }
