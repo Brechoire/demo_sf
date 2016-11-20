@@ -24,13 +24,6 @@ class ArticleController extends Controller
     public function indexAction()
     {
 
-//        $repository = $this->getDoctrine()
-//            ->getManager()
-//            ->getRepository('BlogArticleBundle:Article');
-//
-//        $count = $repository->countArticle();
-//        $showArticle = $repository->showArticles();
-
         $showArticle = $this->get('app.article')->showArticle();
         $count = $this->get('app.article')->countArticle();
 
@@ -65,10 +58,35 @@ class ArticleController extends Controller
         $form = $this->get('app.article')->addArticle($request);
 
         if ($form->isValid()) {
+            $this->addFlash('notice','Article envoyé');
             return $this->redirectToRoute('home-page');
         }
+
         return array('form' => $form->createView());
 
+    }
+
+    /**
+     * @Route("/login", name="login")
+     * @Template("default/login.html.twig")
+     */
+    public function loginAction()
+    {
+
+    }
+
+    /**
+     * @Route("/article/delete/{id}", name="delete")
+     */
+    public function deleteAction($id)
+    {
+        $articleService = $this->get('app.article');
+
+        $article = $articleService->findOneArticle(['id' => $id]);
+
+        $articleService->deleteArticle($article);
+
+        return $this->redirectToRoute('home-page');
     }
 
 

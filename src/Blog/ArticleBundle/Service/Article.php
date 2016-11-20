@@ -10,9 +10,11 @@ namespace Blog\ArticleBundle\Service;
 
 
 use Blog\ArticleBundle\Form\ArticleType;
+use Blog\ArticleBundle\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
+
 
 
 class Article
@@ -28,19 +30,26 @@ class Article
     protected $form;
 
     /**
-     * Article constructor.
-     * @param $doctrine
-     * @param $form
+     * @var ArticleRepository
      */
-    public function __construct(EntityManager $doctrine, FormFactory $form)
+    protected $repo;
+
+    /**
+     * Article constructor.
+     * @param EntityManager $doctrine
+     * @param FormFactory $form
+     * @param ArticleRepository $articleRepository
+     */
+    public function __construct(EntityManager $doctrine, FormFactory $form, ArticleRepository $articleRepository)
     {
         $this->doctrine = $doctrine;
         $this->form = $form;
+        $this->repo = $articleRepository;
     }
 
     public function showArticle()
     {
-         $showArticle = $this->doctrine->getRepository('BlogArticleBundle:Article')->showArticles();
+        $showArticle = $this->doctrine->getRepository('BlogArticleBundle:Article')->showArticles();
 
         return $showArticle;
     }
@@ -52,7 +61,11 @@ class Article
         return $count;
     }
 
-
+    /**
+     * Add article
+     * @param Request $request
+     * @return \Symfony\Component\Form\FormInterface
+     */
     public function addArticle(Request $request)
     {
         $article = new \Blog\ArticleBundle\Entity\Article();
@@ -61,13 +74,27 @@ class Article
 
         $form->handleRequest($request);
 
-        if ($form->isValid() && $form->isSubmitted()) {
+        if ($form->isValid() && $form->isSubmitted())
+        {
             $this->doctrine->persist($article);
             $this->doctrine->flush();
-            // $this->session->getFlashbag()->add('success', 'L'article a bien été ajouté');
-           
+            $this->addFlash('notice','Article envoyé');
         }
-
         return $form;
+    }
+
+    public function findOneArticle($id)
+    {
+        $article = $this->repo->findOneBy($id);
+        return $article;
+    }
+
+
+    public function deleteArticle($article)
+    {
+        $this->doctrine->remove($article);
+        $this->doctrine->flush();
+//        $this->em->remove($article);
+//        $this->em->flush();
     }
 }

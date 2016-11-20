@@ -15,4 +15,10 @@ services:
 
     app.article:
                 class: Blog\ArticleBundle\Service\Article
-                arguments: ["@doctrine.orm.entity_manager", "@form.factory"]
+                arguments: ["@doctrine.orm.entity_manager", "@form.factory", "@articlerepository"]
+
+
+    articlerepository:
+            class: Doctrine\ORM\EntityRepository
+            factory: ["@doctrine.orm.entity_manager", getRepository]
+            arguments: [Blog\ArticleBundle\Entity\Article]

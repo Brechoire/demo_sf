@@ -9,11 +9,15 @@
 
                 <h4>Nombre d'article : {{ countarticle }}</h4>
 
+                {% for message in app.session.flashbag.get('notice') %}
+                <div class="alert alert-info text-center">message: {{ message }}</div>
+                {% endfor %}
+
                 {% for art in showarticle %}
 
                     <div class="article">
                         <a href="{{ path('article', {'id': art.id}) }}"><h3>{{ art.title }}</h3></a>
-
+                        <a class="btn btn-danger btn-lg" href="{{ path('delete', {'id': art.id}) }}" role="button">Supprimer</a></p>
                             <ul class="list-unstyled list-inline">
                                 <li><i class="fa fa-calendar"></i> {{ art.creationdate|date("d/m/Y") }}</li>
                             </ul>
