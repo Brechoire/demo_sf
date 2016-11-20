@@ -47,6 +47,10 @@ class Article
         $this->repo = $articleRepository;
     }
 
+    /**
+     * Show items
+     * @return array
+     */
     public function showArticle()
     {
         $showArticle = $this->doctrine->getRepository('BlogArticleBundle:Article')->showArticles();
@@ -54,6 +58,10 @@ class Article
         return $showArticle;
     }
 
+    /**
+     * Count the number of items
+     * @return mixed
+     */
     public function countArticle()
     {
         $count = $this->doctrine->getRepository('BlogArticleBundle:Article')->countArticle();
@@ -83,6 +91,11 @@ class Article
         return $form;
     }
 
+    /**
+     * Find one article by ID
+     * @param $id
+     * @return null|object
+     */
     public function findOneArticle($id)
     {
         $article = $this->repo->findOneBy($id);
@@ -90,11 +103,13 @@ class Article
     }
 
 
+    /**
+     * Delete Article
+     * @param $article
+     */
     public function deleteArticle($article)
     {
         $this->doctrine->remove($article);
         $this->doctrine->flush();
-//        $this->em->remove($article);
-//        $this->em->flush();
     }
 }
