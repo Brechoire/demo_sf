@@ -45,6 +45,14 @@ class Article
         return $showArticle;
     }
 
+    public function countArticle()
+    {
+        $count = $this->doctrine->getRepository('BlogArticleBundle:Article')->countArticle();
+
+        return $count;
+    }
+
+
     public function addArticle(Request $request)
     {
         $article = new \Blog\ArticleBundle\Entity\Article();
