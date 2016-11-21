@@ -6,25 +6,39 @@
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-
-                    <div class="article">
-                        <a href="#"><h3>{{ article.title }}</h3></a>
-
-                        <ul class="list-unstyled list-inline">
-                            <li><i class="fa fa-calendar"></i> {{ article.creationdate|date("d/m/Y") }}</li>
-                        </ul>
-
-                        <div class="article-content">
-
-                                {{ article.content }}
-
+                <div id="postlist">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="text-center">
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                        <h3 class="pull-left">{{ article.title }}</h3>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <h4 class="pull-right">
+                                            <small><em>{{ article.creationdate|date("d/m/Y") }}</em></small>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
+                        <div class="panel-body">
+                            {{ article.content }}
+                        </div>
+
+                        <div class="panel-footer">
+                            <a class="btn btn-info" href="{{ path('article-update', {'id': article.id}) }}" role="button"><i class="fa fa-edit"></i></a>
+                            <a class="btn btn-danger" href="{{ path('delete', {'id': article.id}) }}" role="button"><i class="fa fa-trash"></i></a>
+                        </div>
                     </div>
 
 
-
+                </div>
+                <div class="text-center"><a href="#" id="loadmore" class="btn btn-primary">---</a></div>
             </div>
+
+
 
         </div>
 

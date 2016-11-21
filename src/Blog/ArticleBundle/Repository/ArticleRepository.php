@@ -39,5 +39,17 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function showOneArticle($id)
+    {
+        $qb = $this->_em->createQueryBuilder();
+
+        $qb->select('a')
+            ->from('BlogArticleBundle:Article', 'a')
+            ->where('a.id = :id')
+            ->setParameter('id', $id);
+
+        return $qb->getQuery()->getSingleResult();
+    }
+
 
 }

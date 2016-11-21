@@ -10,10 +10,12 @@ namespace Blog\ArticleBundle\Service;
 
 
 use Blog\ArticleBundle\Form\ArticleType;
+use Blog\ArticleBundle\Form\UpdateArticleType;
 use Blog\ArticleBundle\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session;
 
 
 
@@ -54,6 +56,13 @@ class Article
     public function showArticle()
     {
         $showArticle = $this->doctrine->getRepository('BlogArticleBundle:Article')->showArticles();
+
+        return $showArticle;
+    }
+
+    public function showOneArticle($id)
+    {
+        $showArticle = $this->doctrine->getRepository('BlogArticleBundle:Article')->showOneArticle($id);
 
         return $showArticle;
     }
@@ -102,7 +111,6 @@ class Article
         return $article;
     }
 
-
     /**
      * Delete Article
      * @param $article
@@ -112,4 +120,40 @@ class Article
         $this->doctrine->remove($article);
         $this->doctrine->flush();
     }
+
+
+    /**
+     * Update Article
+     * @param Request $request
+     * @param $id
+     * @return \Symfony\Component\Form\FormInterface
+     */
+    public function updateArticle(Request $request, $id)
+    {
+        $article = $this->doctrine
+            ->getRepository('BlogArticleBundle:Article')
+            ->findOneBy(array('id' => $id));
+
+        $form = $this->form->create(UpdateArticleType::class, $article);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->doctrine->flush();
+        }
+
+        return $form;
+    }
+
+    /**
+     * @param $id
+     * @return null|object
+     */
+    public function findArticle($id)
+    {
+        $article = $this->repo->find($id);
+
+        return $article;
+    }
+    
+    
 }
