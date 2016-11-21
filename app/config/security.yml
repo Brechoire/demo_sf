@@ -22,3 +22,16 @@ security:
 
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    encoders:
+        Blog\ArticleBundle\Entity\User:
+            algorithm: bcrypt
+
+        # ...
+
+        providers:
+            our_db_provider:
+                entity:
+                    class: BlogArticleBundle:User
+                    property: username
+                    # if you're using multiple entity managers
+                    # manager_name: customer
