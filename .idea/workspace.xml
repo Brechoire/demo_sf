@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75ffe1ca-94e4-4a79-8458-da3ad15ab70b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Blog/ArticleBundle/Controller/SecurityController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Blog/ArticleBundle/Doctrine/HashPasswordListener.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Blog/ArticleBundle/Form/LoginType.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Blog/ArticleBundle/Security/LoginFormAuthenticator.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/default/login.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/default/login.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/security.yml" afterPath="$PROJECT_DIR$/app/config/security.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/services.yml" afterPath="$PROJECT_DIR$/app/config/services.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blog/ArticleBundle/Controller/ArticleController.php" afterPath="$PROJECT_DIR$/src/Blog/ArticleBundle/Controller/ArticleController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blog/ArticleBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/Blog/ArticleBundle/Entity/User.php" />
     </list>
     <ignored path="demo_sf.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -645,12 +635,12 @@
       <workItem from="1479733473769" duration="99000" />
       <workItem from="1479767397623" duration="2350000" />
       <workItem from="1479796656075" duration="8244000" />
-      <workItem from="1479809638371" duration="2554000" />
+      <workItem from="1479809638371" duration="3201000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74228000" />
+    <option name="totallyTimeSpent" value="74875000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
