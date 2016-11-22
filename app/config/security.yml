@@ -1,37 +1,28 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/book/security.html
 security:
-
+    encoders:
+        Blog\ArticleBundle\Entity\User: bcrypt
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory: ~
-
+#        in_memory:
+#            memory: ~
+         our_users:
+             entity: { class: Blog\ArticleBundle\Entity\User, property: email }
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
         main:
             anonymous: ~
+            guard:
+                authenticators:
+                    - app.security.login_form_authenticator
+            logout:
+                 path: /logout
             # activate different ways to authenticate
-
             # http_basic: ~
             # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
-
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
-    encoders:
-        Blog\ArticleBundle\Entity\User:
-            algorithm: bcrypt
-
-        # ...
-
-        providers:
-            our_db_provider:
-                entity:
-                    class: BlogArticleBundle:User
-                    property: username
-                    # if you're using multiple entity managers
-                    # manager_name: customer

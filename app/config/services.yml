@@ -22,3 +22,29 @@ services:
             class: Doctrine\ORM\EntityRepository
             factory: ["@doctrine.orm.entity_manager", getRepository]
             arguments: [Blog\ArticleBundle\Entity\Article]
+
+#    Login
+    app.security.login_form_authenticator:
+            class: Blog\ArticleBundle\Security\LoginFormAuthenticator
+            autowire: true
+
+    app.markdown_transformer:
+            class: Blog\ArticleBundle\Service\MarkdownTransformer
+            arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']
+
+    app.markdown_extension:
+            class: Blog\ArticleBundle\Twig\MarkdownExtension
+            tags:
+                - { name: twig.extension }
+            #arguments: ['@app.markdown_transformer']
+            autowire: true
+
+    app.security.login_form_authenticator:
+            class: Blog\ArticleBundle\Security\LoginFormAuthenticator
+            autowire: true
+
+    app.doctrine.hash_password_listener:
+            class: Blog\ArticleBundle\Doctrine\HashPasswordListener
+            autowire: true
+            tags:
+                - { name: doctrine.event_subscriber }

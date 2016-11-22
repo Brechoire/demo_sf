@@ -4,6 +4,7 @@ namespace Blog\ArticleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\Role\Role;
 
 /**
  * User
@@ -106,7 +107,7 @@ class User implements UserInterface
      */
     public function getUsername()
     {
-        return $this->username;
+        return $this->email;
     }
 
     /**
@@ -119,8 +120,9 @@ class User implements UserInterface
     public function setPlainPassword($plainPassword)
     {
         $this->plainPassword = $plainPassword;
-
-        return $this;
+        // forces the object to look "dirty" to Doctrine. Avoids
+        // Doctrine *not* saving this entity, if only plainPassword changes
+        $this->password = null;
     }
 
     /**
@@ -159,7 +161,7 @@ class User implements UserInterface
 
     public function getRoles()
     {
-
+        return ['ROLE_USER'];
     }
 
     /**
@@ -171,7 +173,7 @@ class User implements UserInterface
     }
     public function eraseCredentials()
     {
-
+        $this->plainPassword = null;
     }
 }
 
